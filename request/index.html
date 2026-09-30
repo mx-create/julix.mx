@@ -1,6 +1,13 @@
-<!-- Song request page. WordPress "Custom HTML" block for /request. Julix&Mx branding. Paste the whole block. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Request a song — Julix&amp;Mx</title>
+<meta name="description" content="Request a song at the DJ set. Add it straight to the live playlist.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+html,body{margin:0;padding:0;background:#08070D}
 #dtt-root{--ink:#08070D;--ink-2:#100D19;--line:#2B2347;--acid:#8CFF5E;--acid-hi:#B4FF94;--violet:#B39CFF;--bone:#EDF3E8;--mute:#ADA8BF;--dim:#7E7897;--on-acid:#06130A;
   --f-display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;--f-body:'Instrument Sans','Helvetica Neue',Arial,sans-serif;--f-mono:'DM Mono',ui-monospace,Menlo,Consolas,monospace;
   background:var(--ink);color:var(--bone);font-family:var(--f-body);font-size:16px;line-height:1.6;position:relative;-webkit-font-smoothing:antialiased;color-scheme:dark}
@@ -72,6 +79,8 @@
 @media (max-height:860px){#dtt-root #dtt-qr{width:140px;height:140px;padding:8px}#dtt-root #dtt-qr img,#dtt-root #dtt-qr canvas{width:122px!important;height:122px!important}#dtt-root .qr,#dtt-root .note,#dtt-root .foot{margin-top:22px;padding-top:18px}#dtt-root .ig{margin-top:20px}}
 @media (prefers-reduced-motion:reduce){#dtt-root .live i,#dtt-root .hint svg{animation:none}#dtt-root .scroller{scroll-behavior:auto}}
 </style>
+</head>
+<body>
 <div id="dtt-root">
 <div class="bg" aria-hidden="true"></div>
 <div class="scroller" id="dtt-scroll">
@@ -194,3 +203,5 @@
   makeQR();
 })();
 </script>
+</body>
+</html>
