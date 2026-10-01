@@ -1,0 +1,4 @@
+# Server-side secrets for the press-kit password gate.
+# Never commit this — upload it manually via Hostinger File Manager.
+# See config.example.php for the expected structure.
+config.php
