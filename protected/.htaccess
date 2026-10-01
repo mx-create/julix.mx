@@ -1,0 +1,13 @@
+# Block all direct web access to this folder.
+# Files in here are only ever served through download.php, which
+# checks the password-gate session before reading them.
+
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>
+
+Options -Indexes
