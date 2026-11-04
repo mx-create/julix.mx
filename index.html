@@ -920,7 +920,10 @@ footer { border-top: 1px solid var(--line); padding-block: 44px calc(44px + env(
   }
   $$('[data-pk-close]', pkModal).forEach(function (el) { el.addEventListener('click', pkCloseModal); });
 
-  function pkOpenInNewTab(url) { window.open(url, '_blank', 'noopener,noreferrer'); }
+  // Set when the page was opened from a link such as ?get=rider (the booking agreement PDF):
+  // open the file in this tab, since a new tab opened after the password check is often blocked.
+  var pkSameTab = false;
+  function pkOpenInNewTab(url) { if (pkSameTab) { window.location.assign(url); return; } window.open(url, '_blank', 'noopener,noreferrer'); }
   function pkTriggerDownload(url) {
     var a = document.createElement('a');
     a.href = url; a.rel = 'noopener noreferrer';
@@ -947,6 +950,17 @@ footer { border-top: 1px solid var(--line); padding-block: 44px calc(44px + env(
       if (pkIsUnlocked()) pkRunAction(key); else pkOpenModal(key);
     });
   });
+
+  // Deep link: music.mxdesign.uk/?get=presskit or ?get=rider jumps to Press and opens the latest file,
+  // asking for the password first if this browser hasn't unlocked it yet.
+  var pkGet = (window.location.search.match(/[?&]get=(presskit|rider)(?:&|$)/) || [])[1];
+  if (pkGet) {
+    pkSameTab = true;
+    try { history.replaceState(null, '', window.location.pathname + '#press'); } catch (e) {}
+    var pkSec = document.getElementById('press');
+    if (pkSec) pkSec.scrollIntoView();
+    if (pkIsUnlocked()) pkRunAction(pkGet); else pkOpenModal(pkGet);
+  }
 
   pkForm.addEventListener('submit', function (e) {
     e.preventDefault();
